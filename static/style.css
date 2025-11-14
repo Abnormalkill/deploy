@@ -1,0 +1,162 @@
+/* static/style.css (NEW CYAN THEME, UX Fixes, and Responsiveness) */
+
+:root {
+    --dark-bg: #181A22; /* Deep dark background */
+    --neon-main: #00FFFF; /* Bright Cyan */
+    --neon-glow: #008888; /* Darker cyan for shadows */
+    --dark-text: #E0FFFF; /* Off-white cyan text */
+    --input-bg: #0A0B10;
+}
+
+/* --- Base Styles --- */
+body {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+    font-family: 'Consolas', monospace;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Base Buttons and Inputs */
+input[type="text"], input[type="email"], input[type="password"], textarea, .form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: var(--input-bg);
+    border: 1px solid var(--neon-glow);
+    color: var(--dark-text);
+    box-sizing: border-box;
+    border-left: 5px solid var(--neon-main);
+}
+.form-button, button, .nav-btn {
+    background: var(--neon-glow);
+    color: var(--dark-bg);
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 0 5px var(--neon-main);
+    transition: background 0.3s, box-shadow 0.3s;
+    padding: 8px 15px;
+}
+.form-button:hover, button:hover, .nav-btn:hover {
+    background: var(--neon-main);
+    box-shadow: 0 0 15px var(--neon-main);
+}
+.form-button { width: 100%; height: 40px; margin-top: 10px; }
+
+
+/* --- Accent Styling --- */
+.neon-text {
+    color: var(--neon-main) !important;
+    text-shadow: 0 0 5px var(--neon-main), 0 0 10px var(--neon-glow);
+}
+.neon-glow { text-shadow: 0 0 7px var(--dark-text), 0 0 20px var(--neon-main); }
+
+
+/* --- Header and Navigation --- */
+header {
+    background-color: #000000;
+    padding: 10px 30px;
+    border-bottom: 2px solid var(--neon-main);
+    box-shadow: 0 0 15px var(--neon-glow);
+}
+nav {
+    display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto;
+}
+/* Profile Dropdown (Replaces Navbar for Logged-in Users) */
+.dropdown { position: relative; display: inline-block; }
+.profile-btn { display: flex; align-items: center; gap: 8px; }
+.dropdown-content {
+    display: none; position: absolute; right: 0; background-color: #111;
+    min-width: 220px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8); z-index: 10;
+    border: 1px solid var(--neon-main); border-radius: 5px; padding: 10px;
+}
+.dropdown-content a {
+    color: var(--dark-text); padding: 8px 12px; text-decoration: none; display: block;
+    transition: background-color 0.2s; border-radius: 3px;
+}
+.dropdown-content a:hover { background-color: #002222; color: var(--neon-main); }
+.dropdown-info { color: #888; font-size: 0.8em; padding: 5px 12px; border-bottom: 1px solid #333; margin-bottom: 5px; }
+.dropdown:hover .dropdown-content { display: block; }
+
+
+/* --- Forms (Login/Register) --- */
+.form-container {
+    max-width: 450px; margin: 80px auto; padding: 40px; background: #000000;
+    border: 2px solid var(--neon-main); border-radius: 10px; box-shadow: 0 0 30px var(--neon-glow);
+}
+.password-field { position: relative; }
+.password-toggle {
+    position: absolute; right: 10px; top: 10px; cursor: pointer; color: var(--neon-main);
+    transition: color 0.2s;
+}
+.password-toggle:hover { color: var(--light-text); }
+
+
+/* --- Study Hub Layout (CORE) --- */
+.hub-layout {
+    display: flex; max-width: 1300px; height: 85vh; margin: 20px auto; padding: 10px;
+    gap: 20px;
+}
+.chat-panel { 
+    flex: 2; display: flex; flex-direction: column; border: 1px solid var(--neon-glow);
+    background: #000000; border-radius: 10px;
+}
+.materials-panel { 
+    flex: 1; border: 1px solid var(--neon-glow); padding: 15px; background: #000000;
+    overflow-y: auto; border-radius: 10px;
+}
+.chat-messages {
+    flex-grow: 1; overflow-y: auto; padding: 10px; background: var(--input-bg);
+    border-radius: 0 0 10px 10px; 
+}
+.message-entry strong { color: var(--neon-main); }
+
+.materials-list a {
+    display: block; padding: 8px; background: #0a0b10; margin-bottom: 5px;
+    border-left: 3px solid var(--neon-main); text-decoration: none;
+    color: var(--dark-text); transition: background-color 0.2s;
+}
+.materials-list a:hover { background-color: #002222; color: var(--neon-main); }
+
+
+/* --- RESPONSIVENESS (Mobile/Tablet Layouts) --- */
+
+@media (max-width: 992px) {
+    /* Stack layout for tablets and small laptops */
+    .hub-layout {
+        flex-direction: column; 
+        height: auto;
+    }
+
+    .chat-panel, .materials-panel {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .chat-messages {
+        height: 50vh; /* Increase chat height on mobile */
+    }
+}
+
+@media (max-width: 576px) {
+    /* Adjust padding and font size for phone screens */
+    header { padding: 10px; }
+    
+    .neon-glow {
+        font-size: 1.5em;
+        padding-top: 15px;
+    }
+
+    .form-container {
+        width: 95%;
+        margin: 20px auto;
+        padding: 15px;
+    }
+    
+    /* Ensure nav links are visible */
+    nav a { margin-left: 10px; }
+}

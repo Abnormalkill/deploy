@@ -1,0 +1,12 @@
+# .gitignore
+
+# 1. Environment & Secrets
+.env
+
+# 2. Local Python Environment
+venv/
+__pycache__/
+*.pyc
+
+# 3. User Uploaded Files (Data should be kept out of code repo)
+static/study_materials/
