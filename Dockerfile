@@ -21,4 +21,4 @@ COPY . .
 
 # Define the command to run your application
 # IMPORTANT: REPLACE 'your_main_script.py' with the actual name of your main Python file!
-CMD ["python", "your_main_script.py"]
+CMD ["python", "app.py"]
