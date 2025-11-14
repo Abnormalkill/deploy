@@ -1,10 +1,10 @@
-# Use a Python base image (using 3.12 for stability, as discussed earlier)
+# Use a Python base image (python:3.12-slim is using Debian Trixie/13)
 FROM python:3.12-slim
 
 # Install system dependencies needed for PyAudio
-# This step requires root privileges, which are available in a Docker build.
+# Note the changed package name: 'portaudio19-dev'
 RUN apt-get update && \
-    apt-get install -y libportaudio2 libportaudio-dev && \
+    apt-get install -y libportaudio2 portaudio19-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Set the working directory
@@ -17,5 +17,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of your application code
 COPY . .
 
-# Define the command to run your application (Replace 'your_script.py' with your main file)
+# Define the command to run your application (REPLACE 'your_script.py' with your main file)
 CMD ["python", "your_script.py"]
